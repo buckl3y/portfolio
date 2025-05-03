@@ -48,10 +48,14 @@
             <h4 id="top-banner-icon-text">Linkedin</h4>
           </div>
         </a>
-        <button id="dark-mode-toggle" aria-label="Toggle dark mode">
-          🌙
-          <!-- You can use text like "Toggle Theme" or icons -->
-        </button>
+        <label
+          class="theme-switch"
+          for="dark-mode-toggle-checkbox"
+          aria-label="Toggle dark mode"
+        >
+          <input type="checkbox" id="dark-mode-toggle-checkbox" />
+          <span class="slider-knob"></span>
+        </label>
       </div>
     </section>
 
@@ -69,7 +73,7 @@
         <div class="hero-section-div" id="hero-section-left">
           <h4>Who I Am</h4>
           <ul>
-            <li><b>Junior Engineer Based in Auckland, NZ</b></li>
+            <li>Junior Engineer Based in Auckland, NZ</li>
             <li>
               I focus on Software Engineering, Web Development, and
               Cyber-Security.
@@ -474,5 +478,6 @@
     <script src="js/experienceSlider.js"></script>
     <script src="js/smoothScroll.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/darkModeToggle.js"></script>
   </body>
 </html>

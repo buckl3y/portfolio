@@ -3,10 +3,16 @@
 /* ========================== */
 :root {
   --main-colour: #252c36;
+  --edges-colour: #252c36;
+  --background-color: #fff;
   --button-hover: #4fc1e6;
   --secondary-colour: lightgray;
   --white-text: aliceblue;
+  --primary-text: black;
   --black-text: black;
+  --banner-text: aliceblue;
+  --edges-colour: #252c36;
+  --button-text: #fff;
   --text-smallest: 0.8rem;
   --text-tiny: 1rem;
   --text-small-tiny: 1.2rem;
@@ -54,32 +60,30 @@ h5 {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  background-color: var(--background-color);
 }
 /* ========= */
 /* DARK MODE */
 /* ========= */
 /* --- Dark Mode Styles --- */
 body.dark-mode {
-  --main-colour: #5dadec; /* Lighter blue for dark background */
-  --background-colour: #1a1a1a; /* Dark background */
-  --text-colour: #e0e0e0; /* Light text */
-  --secondary-text-colour: #bbbbbb; /* Lighter secondary text */
-  --border-colour: #444444; /* Darker borders */
-  --header-colour: #ffffff; /* White headers */
-  --item-background: #2c2c2c; /* Slightly lighter dark background for items */
+  --edges-colour: #fff;
+  --main-colour: #3c3c3c;
+  --background-color: #282828;
+  --button-hover: #4fc1e6;
+  --secondary-colour: lightgray;
+  --white-text: black;
+  --primary-text: white;
   --scrollbar-track: #333333;
   --scrollbar-thumb: #555555;
   --scrollbar-thumb-hover: #777777;
-
-  /* Remap --black-text if used separately */
-  --black-text: var(--header-colour);
 }
 
 /* Optional: Style toggle button differently in dark mode */
 body.dark-mode #dark-mode-toggle {
   border-color: var(--border-colour);
   background-color: var(--item-background);
-  color: var(--text-colour);
+  color: var(--primary-text);
 }
 
 /* main body of page controlling margins etc */
@@ -136,7 +140,7 @@ i {
   font-size: var(--icon-medium);
 }
 #top-banner-icon-div {
-  color: var(--white-text);
+  color: var(--banner-text);
 }
 
 #top-banner-icon-text {
@@ -147,11 +151,17 @@ i {
 .banner-div {
   display: flex;
   align-items: center;
-  color: var(--white-text);
+  color: var(--banner-text);
 }
 #top-banner-left {
   flex-grow: 2;
   margin-left: 15vw;
+}
+h3#top-banner-left-h3 {
+  background-color: var(--main-colour);
+}
+#top-banner-icon-div h4 {
+  background-color: var(--main-colour);
 }
 #top-banner-right {
   flex-grow: 1;
@@ -181,6 +191,56 @@ i {
 #top-banner-right a.header-link:hover {
   opacity: 0.65;
 }
+
+/* --- Dark Mode Toggle Switch Styles --- */
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  width: 60px;
+  position: relative;
+  cursor: pointer;
+  z-index: 999;
+  background-color: var(--background-color);
+  border-radius: 30px;
+}
+.theme-switch input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+/* Style the track (the label's ::before pseudo-element) */
+.theme-switch .slider-knob::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ceab0f;
+  border-radius: 26px;
+  transition: background-color 0.3s ease;
+}
+
+/* Style the knob (the span) */
+.theme-switch .slider-knob {
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+/* When the checkbox is checked (dark mode) */
+.theme-switch input[type="checkbox"]:checked + .slider-knob::before {
+  background-color: var(--main-colour);
+}
+
+.theme-switch input[type="checkbox"]:checked + .slider-knob {
+  transform: translateX(26px);
+}
 /* ===================================== */
 /* ===== END OF TOP BANNER SECTION ===== */
 /* ===================================== */
@@ -201,24 +261,15 @@ i {
 #hero-section-left {
   display: flex;
   flex: 1.5;
-  background-color: white;
   border-radius: 8px;
   flex-direction: column;
   height: inherit;
   /* border: solid black 1px; */
 }
 
-#hero-section-left h2 {
-  font-size: var(--text-large);
-  line-height: 1.2;
-  color: var(--main-colour);
-  margin-bottom: 10px;
-  overflow: hidden;
-}
-
 #hero-section-left h4 {
   font-size: var(--text-medium-larger);
-  color: var(--main-colour);
+  color: var(--primary-text);
   font-weight: 600;
   margin-bottom: -5px;
 }
@@ -227,7 +278,7 @@ i {
 #hero-section-left ul {
   font-size: var(--text-small-tiny);
   line-height: 1.6;
-  color: #333;
+  color: var(--primary-text);
 }
 
 #hero-section-left ul {
@@ -241,6 +292,7 @@ i {
 }
 
 #hero-section-right {
+  color: var(--primary-text);
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -255,7 +307,8 @@ i {
   height: 250px;
   border-radius: 50%;
   overflow: hidden;
-  border: 5px solid var(--main-colour);
+  /* change this to white */
+  border: 5px solid var(--edges-colour);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   background-color: #eee;
 }
@@ -279,12 +332,12 @@ i {
   padding: 10px;
 }
 .quote h2 {
-  font-size: var(--text-largest);
-  color: var(--main-colour);
+  font-size: var(--text-large);
+  color: var(--primary-text);
 }
 .quote p {
   font-size: var(--text-tiny);
-  color: var(--main-colour);
+  color: var(--primary-text);
 }
 /* =============================== */
 /* ===== END OF HERO SECTION ===== */
@@ -294,6 +347,7 @@ i {
 /* ===== NAVIGATION BUTTONS (Below Hero) ===== */
 /* =========================================== */
 #nav-btns {
+  color: var(--button-text);
   display: flex;
   margin-top: 40px;
   gap: 20px;
@@ -306,6 +360,7 @@ i {
 /* ===== TECHNOLOGIES SECTION ===== */
 /* ================================ */
 #technologies-header-div {
+  color: var(--primary-text);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -335,7 +390,7 @@ i {
 
 #technologies-icon {
   font-size: var(--icon-largest);
-  color: var(--main-colour);
+  color: var(--primary-text);
   transition: all 0.2s ease;
 }
 
@@ -344,7 +399,7 @@ i {
 }
 
 #technologies-icon-text {
-  color: var(--main-colour);
+  color: var(--primary-text);
   font-size: var(--text-medium-small);
   font-weight: 500;
 }
@@ -365,6 +420,7 @@ i {
 }
 
 #prof-experience-header-div {
+  color: var(--primary-text);
   max-width: calc(100vw - 30vw);
   margin: 0 auto 30px auto;
   display: flex;
@@ -379,9 +435,7 @@ i {
   position: relative;
 
   /* --- Optional: Style scrollbar (WebKit browsers) --- */
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
+
   &::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
@@ -415,7 +469,7 @@ i {
   right: 1vw;
   /* height is the thickness of the timeline horizontal line */
   height: 4px;
-  background-color: var(--main-colour);
+  background-color: var(--edges-colour);
   /* z-index: 1; Behind nodes but above item background */
   z-index: 1;
 }
@@ -442,8 +496,8 @@ i {
   left: 50%;
   width: 24px;
   height: 24px;
-  background-color: white;
-  border: 4px solid var(--main-colour);
+  background-color: var(--background-color);
+  border: 4px solid var(--edges-colour);
   border-radius: 50%;
   /* Ensure node is above the timeline line and item content */
   z-index: 3;
@@ -451,21 +505,21 @@ i {
 
 .experience-details h4 {
   font-size: var(--text-medium-large);
-  color: var(--black-text);
+  color: var(--primary-text);
   margin-bottom: 5px;
 }
 
 .experience-details .position,
 .experience-details .dates {
   font-size: var(--text-small);
-  color: #444;
+  color: var(--primary-text);
 }
 
 .experience-details ul {
   list-style: disc;
   padding-left: 20px;
   font-size: var(--text-small);
-  color: #222;
+  color: var(--primary-text);
 }
 
 .experience-details ul li {
@@ -489,6 +543,7 @@ i {
   display: flex;
   justify-content: center;
   text-align: center;
+  color: var(--primary-text);
 }
 
 #edu-cert-grid-div {
@@ -500,8 +555,7 @@ i {
 }
 
 .edu-cert-item {
-  background-color: #fff;
-  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
   border-radius: 8px;
   padding: 20px;
   text-align: center;
@@ -514,7 +568,6 @@ i {
 }
 
 .edu-cert-item:hover {
-  border-color: var(--main-colour);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -534,7 +587,7 @@ i {
 
 .edu-cert-visible h4 {
   font-size: var(--text-medium-larger);
-  color: var(--black-text);
+  color: var(--primary-text);
   font-weight: 400;
 }
 
@@ -555,14 +608,14 @@ i {
 
 .edu-cert-details h5 {
   font-size: var(--text-medium);
-  color: var(--main-colour);
+  color: var(--primary-text);
   margin-bottom: 8px;
   font-weight: 600;
 }
 
 .edu-cert-details p {
   font-size: var(--text-medium-small);
-  color: #333;
+  color: var(--primary-text);
   margin-bottom: 12px;
   line-height: 1.5;
 }
@@ -572,7 +625,7 @@ i {
   padding-left: 20px;
   margin-top: 0;
   font-size: var(--text-small-tiny);
-  color: #444;
+  color: var(--primary-text);
 }
 
 .edu-cert-details ul li {
@@ -591,6 +644,7 @@ i {
 }
 
 #projects-header-div {
+  color: var(--primary-text);
   max-width: calc(100vw - 30vw);
   margin: 0 auto 50px auto;
   display: flex;
@@ -608,7 +662,7 @@ i {
 
 .project-item {
   background-color: var(--main-colour);
-  color: var(--white-text);
+  color: var(--button-text);
   aspect-ratio: 1 / 1;
   border-radius: 10px;
   display: flex;
@@ -621,7 +675,7 @@ i {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
+  overflow: auto;
   padding: 25px;
 }
 
@@ -647,7 +701,7 @@ i {
 /* ========================== */
 #footer-section {
   background-color: var(--main-colour);
-  color: var(--white-text);
+  color: var(--banner-text);
   padding: 40px 0;
   margin-top: 60px;
   text-align: center;
@@ -672,9 +726,9 @@ i {
 }
 
 .btn-footer-secondary {
-  background-color: var(--secondary-colour);
+  background-color: white;
+  border: solid 2px;
   color: var(--black-text);
-  border: 2px solid var(--black-text);
   padding: 10px 25px;
   border-radius: 5px;
   font-size: var(--text-medium-large);
@@ -688,8 +742,7 @@ i {
 
 .btn-footer-secondary:hover {
   background-color: var(--button-hover);
-  border-color: #000;
-  color: #000;
+  color: var(--black-text);
 }
 .btn-footer-secondary:active {
   transform: scale(0.98);
@@ -697,7 +750,7 @@ i {
 
 .back-to-top {
   display: inline-block;
-  color: var(--white-text);
+  color: var(--button-text);
   text-decoration: none;
   font-size: var(--text-medium-large);
   opacity: 0.8;
@@ -725,11 +778,12 @@ i {
 button {
   font-family: "Lalezar", sans-serif;
   font-weight: 400;
+  color: var(--button-text);
 }
 .nav-button {
   flex: 1;
   font-size: var(--text-medium-larger);
-  color: var(--white-text);
+  color: var(--button-text);
   background: var(--main-colour);
   height: 5rem;
   border-radius: 5px;
@@ -758,8 +812,8 @@ button {
 
 #exp-prev-btn,
 #exp-next-btn {
+  color: var(--button-text);
   background-color: var(--main-colour);
-  color: var(--white-text);
   border: none;
   border-radius: 50%;
   width: 40px;
@@ -775,12 +829,14 @@ button {
 
 #exp-prev-btn:hover,
 #exp-next-btn:hover {
+  color: var(--black-text);
   background-color: var(--button-hover);
 }
 
 #exp-prev-btn:disabled,
 #exp-next-btn:disabled {
-  background-color: #ccc;
+  background-color: var(--background-color);
+  color: var(--background-color);
   cursor: default;
   opacity: 0.6;
 }
@@ -813,8 +869,8 @@ button {
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 650px;
-  background-color: white;
-  color: var(--black-text);
+  background-color: var(--background-color);
+  color: var(--primary-text);
   border-radius: 15px;
   padding: 25px 35px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
@@ -823,6 +879,12 @@ button {
   display: none;
   max-height: 85vh;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+    height: 8px;
+  }
 }
 
 .popup:not([hidden]) {
@@ -832,15 +894,18 @@ button {
   display: block;
 }
 
+.popup-content {
+  display: flex;
+  flex-direction: column;
+}
 .popup-close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
+  position: sticky;
+  align-self: flex-end;
   background: none;
   border: none;
   font-size: var(--text-largest);
   font-weight: bold;
-  color: #555;
+  color: var(--primary-text);
   cursor: pointer;
   line-height: 1;
   padding: 0;
@@ -858,12 +923,12 @@ button {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 20px;
-  background-color: #eee;
+  color: var(--primary-text);
 }
 
 .popup h3 {
   font-size: var(--text-medium-large);
-  color: var(--main-colour);
+  color: var(--primary-text);
   margin-top: 0;
   margin-bottom: 10px;
   font-family: "Lalezar", sans-serif;
@@ -871,7 +936,7 @@ button {
 
 .popup h4 {
   font-size: var(--text-small);
-  color: var(--black-text);
+  color: var(--primary-text);
   margin-top: 20px;
   margin-bottom: 8px;
   font-family: "Lalezar", sans-serif;
@@ -1163,21 +1228,21 @@ button {
   }
   .experience-details h4 {
     font-size: var(--text-medium-small);
-    color: var(--black-text);
+    color: var(--primary-text);
     margin-bottom: 5px;
   }
 
   .experience-details .position,
   .experience-details .dates {
     font-size: var(--text-tiny);
-    color: #444;
+    color: var(--primary-text);
   }
 
   .experience-details ul {
     list-style: disc;
     padding-left: 20px;
     font-size: var(--text-tiny);
-    color: #222;
+    color: var(--primary-text);
   }
 }
 

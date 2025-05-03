@@ -14,7 +14,7 @@ function initializePopup() {
         return; // Stop if elements are missing
     }
 
-    // --- Function to open the popup ---
+    //Function to open the popup
     function openPopup(projectData) {
         popupTitle.textContent = projectData.title;
         popupImage.src = projectData.img;
@@ -42,14 +42,13 @@ function initializePopup() {
         popupCloseBtn.focus(); // Focus close button
     }
 
-    // --- Function to close the popup ---
+    // Function to close the popup
     function closePopup() {
         popup.setAttribute('hidden', true);
         popupOverlay.setAttribute('hidden', true);
-        // Consider returning focus to the element that opened the popup (more advanced)
     }
 
-    // --- Event Listeners for Popup ---
+    //Event Listeners for Popup
 
     // Add click listener to each project item
     projectItems.forEach(item => {
@@ -95,6 +94,4 @@ function initializePopup() {
             closePopup();
         }
     });
-
-    console.log("Popup system initialized."); // Confirmation
 }
