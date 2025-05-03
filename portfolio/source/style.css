@@ -7,6 +7,28 @@
   --secondary-colour: lightgray;
   --white-text: aliceblue;
   --black-text: black;
+  --text-smallest: 0.8rem;
+  --text-tiny: 1rem;
+  --text-small-tiny: 1.2rem;
+  --text-small: 1.3rem;
+  --text-medium-small: 1.4rem;
+  --text-medium: 1.6rem;
+  --text-medium-large: 1.8rem;
+  --text-medium-larger: 2rem;
+  --text-large: 2.2rem;
+  --text-largest: 3rem;
+  --text-header-small: 4rem;
+  --text-header-medium: 5rem;
+  --text-header-large: 7rem;
+
+  --icon-small: 3rem;
+  --icon-small-medium: 3.5rem;
+  --icon-medium: 4rem;
+  --icon-medium-large: 4.5rem;
+  --icon-larger: 5rem;
+  --icon-largest: 6rem;
+
+  /* 0.8, 1, 1.2, 1.3, 1.4, 1.6, 1.8, 2, 2.2, 3, 4, 5, 7  */
 }
 /* ================================= */
 /* ===== END OF ROOT VARIABLES ===== */
@@ -34,14 +56,16 @@ h5 {
   overflow-x: hidden;
 }
 
+/* main body of page controlling margins etc */
 #main-content {
   margin-left: 15vw;
   margin-right: 15vw;
   padding: 30px 0;
 }
 
+/* Headings for each section */
 .primary-header {
-  font-size: 4.5rem;
+  font-size: var(--text-header-small);
 }
 /* ============================================== */
 /* ===== END OF GLOBAL RESETS & BASE STYLES ===== */
@@ -52,20 +76,22 @@ h5 {
 /* ================= */
 .icon-div {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
   width: 100px;
   height: 100px;
 }
 
 i {
-  font-size: 3.5rem;
+  font-size: var(--icon-medium-large);
 }
 
+/* FIX ME MAKE IT ALWAYS ONTOP AND ABOVE IMAGES/TEXT */
 #circle-xmark {
   color: red;
-  font-size: x-large;
+  font-size: var(--text-large);
 }
 /* ======================== */
 /* ===== END OF ICONS ===== */
@@ -75,7 +101,7 @@ i {
 /* ===== TOP BANNER SECTION ===== */
 /* ============================== */
 #top-banner-icon {
-  font-size: 3.5rem;
+  font-size: var(--icon-medium);
 }
 #top-banner-icon-div {
   color: var(--white-text);
@@ -83,7 +109,7 @@ i {
 
 #top-banner-icon-text {
   margin-top: 5px;
-  font-size: 1.5rem;
+  font-size: var(--text-small);
 }
 
 .banner-div {
@@ -111,7 +137,7 @@ i {
 
 #top-banner-left-h3 {
   padding-left: 10vw;
-  font-size: 5rem;
+  font-size: var(--text-header-medium);
 }
 
 #top-banner-right a.header-link {
@@ -150,15 +176,15 @@ i {
 }
 
 #hero-section-left h2 {
-  font-size: 2.2rem;
+  font-size: var(--text-large);
   line-height: 1.2;
-  color: var(--black-text);
+  color: var(--main-colour);
   margin-bottom: 10px;
   overflow: hidden;
 }
 
 #hero-section-left h4 {
-  font-size: 2rem;
+  font-size: var(--text-medium-larger);
   color: var(--main-colour);
   font-weight: 600;
   margin-bottom: -5px;
@@ -166,7 +192,7 @@ i {
 
 #hero-section-left p,
 #hero-section-left ul {
-  font-size: 1.2rem;
+  font-size: var(--text-small-tiny);
   line-height: 1.6;
   color: #333;
 }
@@ -246,15 +272,26 @@ i {
   flex-direction: column;
   width: 150px;
   height: 150px;
+  /* if I want a nice border? */
+  /* border: solid 1px;
+  border-color: var(--main-colour);
+  border-radius: 20%; */
 }
 
 #technologies-icon {
-  font-size: 7rem;
+  font-size: var(--icon-largest);
+  color: var(--main-colour);
+  transition: all 0.2s ease;
+}
+
+#technologies-icon:hover {
+  opacity: 0.65;
 }
 
 #technologies-icon-text {
-  color: rgb(43, 38, 38);
-  font-size: 1.5rem;
+  color: var(--main-colour);
+  font-size: var(--text-medium-small);
+  font-weight: 500;
 }
 /* ======================================= */
 /* ===== END OF TECHNOLOGIES SECTION ===== */
@@ -283,7 +320,7 @@ i {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 30px 0;
+  /* padding: 30px 0; */
   position: relative;
 
   /* --- Optional: Style scrollbar (WebKit browsers) --- */
@@ -309,8 +346,8 @@ i {
   width: fit-content;
   position: relative;
   padding-top: 20px;
-  padding-left: 15vw;
-  padding-right: 15vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
 }
 
 /* --- Timeline Line (using pseudo-element on container) --- */
@@ -318,8 +355,10 @@ i {
   content: "";
   position: absolute;
   top: 20px;
-  left: 15vw;
-  right: 15vw;
+  width: auto;
+  left: 1vw;
+  right: 1vw;
+  /* height is the thickness of the timeline horizontal line */
   height: 4px;
   background-color: var(--main-colour);
   /* z-index: 1; Behind nodes but above item background */
@@ -329,24 +368,23 @@ i {
 .experience-item {
   /* Prevent flex items from shrinking/growing */
   flex: 0 0 auto;
-  width: 300px;
+  width: 500px;
   margin-right: 280px;
   position: relative;
-  /* Ensure item content is above the timeline line */
-  z-index: 2;
   padding: 15px;
   border-radius: 5px;
 }
 
 .experience-item:last-child {
   margin-right: 0;
+  padding-right: 0;
 }
 
 .timeline-node {
   position: absolute;
+  transform: translateX(-50%);
   top: -10px;
   left: 50%;
-  transform: translateX(-50%);
   width: 24px;
   height: 24px;
   background-color: white;
@@ -357,21 +395,21 @@ i {
 }
 
 .experience-details h4 {
-  font-size: 1.8rem;
+  font-size: var(--text-medium-large);
   color: var(--black-text);
   margin-bottom: 5px;
 }
 
 .experience-details .position,
 .experience-details .dates {
-  font-size: 1.3rem;
+  font-size: var(--text-small);
   color: #444;
 }
 
 .experience-details ul {
   list-style: disc;
   padding-left: 20px;
-  font-size: 1.3rem;
+  font-size: var(--text-small);
   color: #222;
 }
 
@@ -440,7 +478,7 @@ i {
 }
 
 .edu-cert-visible h4 {
-  font-size: 2rem;
+  font-size: var(--text-medium-larger);
   color: var(--black-text);
   font-weight: 400;
 }
@@ -461,14 +499,14 @@ i {
 }
 
 .edu-cert-details h5 {
-  font-size: 1.6rem;
+  font-size: var(--text-medium);
   color: var(--main-colour);
   margin-bottom: 8px;
   font-weight: 600;
 }
 
 .edu-cert-details p {
-  font-size: 1.4rem;
+  font-size: var(--text-medium-small);
   color: #333;
   margin-bottom: 12px;
   line-height: 1.5;
@@ -478,7 +516,7 @@ i {
   list-style: disc;
   padding-left: 20px;
   margin-top: 0;
-  font-size: 1.2rem;
+  font-size: var(--text-small-tiny);
   color: #444;
 }
 
@@ -521,7 +559,7 @@ i {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: var(--text-medium-larger);
   font-weight: 500;
   text-align: center;
   cursor: pointer;
@@ -571,7 +609,7 @@ i {
 }
 
 .footer-text {
-  font-size: 2.2rem;
+  font-size: var(--text-large);
   font-weight: 400;
   flex-grow: 1;
   text-align: left;
@@ -583,7 +621,7 @@ i {
   border: 2px solid var(--black-text);
   padding: 10px 25px;
   border-radius: 5px;
-  font-size: 1.8rem;
+  font-size: var(--text-medium-large);
   font-weight: 400;
   text-decoration: none;
   cursor: pointer;
@@ -605,7 +643,7 @@ i {
   display: inline-block;
   color: var(--white-text);
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: var(--text-medium-large);
   opacity: 0.8;
   transition: opacity 0.2s ease;
 }
@@ -618,7 +656,7 @@ i {
 .back-to-top i {
   transition: opacity 0.2s ease;
   display: block;
-  font-size: 1.6rem;
+  font-size: var(--text-medium);
   margin-bottom: 5px;
 }
 /* ================================= */
@@ -634,7 +672,7 @@ button {
 }
 .nav-button {
   flex: 1;
-  font-size: 2rem;
+  font-size: var(--text-medium-larger);
   color: var(--white-text);
   background: var(--main-colour);
   height: 5rem;
@@ -670,7 +708,7 @@ button {
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  font-size: 1.5rem;
+  font-size: var(--text-medium-small);
   font-weight: bold;
   cursor: pointer;
   display: flex;
@@ -697,6 +735,8 @@ button {
 /* ==================================== */
 /* ===== POPUPS (Project Details) ===== */
 /* ==================================== */
+
+/* NEED TO HIDE SCROLLBAR AND FIX BUTTON */
 .popup-overlay {
   position: fixed;
   top: 0;
@@ -742,7 +782,7 @@ button {
   right: 15px;
   background: none;
   border: none;
-  font-size: 2.5rem;
+  font-size: var(--text-largest);
   font-weight: bold;
   color: #555;
   cursor: pointer;
@@ -766,7 +806,7 @@ button {
 }
 
 .popup h3 {
-  font-size: 1.8rem;
+  font-size: var(--text-medium-large);
   color: var(--main-colour);
   margin-top: 0;
   margin-bottom: 10px;
@@ -774,7 +814,7 @@ button {
 }
 
 .popup h4 {
-  font-size: 1.3rem;
+  font-size: var(--text-small);
   color: var(--black-text);
   margin-top: 20px;
   margin-bottom: 8px;
@@ -782,7 +822,7 @@ button {
 }
 
 .popup p {
-  font-size: 1rem;
+  font-size: var(--text-tiny);
   line-height: 1.6;
   margin-bottom: 15px;
   font-family: sans-serif;
@@ -793,7 +833,7 @@ button {
   padding-left: 25px;
   margin: 0;
   font-family: sans-serif;
-  font-size: 0.95rem;
+  font-size: var(--text-tiny);
 }
 
 .popup ul li {
@@ -859,7 +899,7 @@ button {
   }
   #top-banner-left-h3 {
     padding: 0;
-    font-size: 5rem;
+    font-size: var(--text-header-medium);
   }
 
   #prof-experience-header-div,
@@ -901,7 +941,7 @@ button {
     gap: 35px;
   }
   #top-banner-left-h3 {
-    font-size: 3.5rem;
+    font-size: var(--text-largest);
     padding: 0;
   }
 
@@ -933,10 +973,10 @@ button {
     border-width: 4px;
   }
   #hero-section-left h2 {
-    font-size: 1.8rem;
+    font-size: var(--text-medium-large);
   }
   #hero-section-left h4 {
-    font-size: 1.2rem;
+    font-size: var(--text-small-tiny);
   }
 }
 
@@ -967,16 +1007,27 @@ button {
     border-width: 4px;
   }
   #hero-section-left h2 {
-    font-size: 1.8rem;
+    font-size: var(--text-medium-large);
   }
   #hero-section-left h4 {
-    font-size: 1.2rem;
+    font-size: var(--text-small-tiny);
   }
 
   #prof-experience-header-div,
   #edu-cert-header-div,
   #projects-header-div {
     max-width: calc(100vw - 10vw);
+  }
+
+  #technologies-icon {
+    font-size: var(--text-header-small);
+  }
+  #technologies-icon-div {
+    width: 100px;
+    height: 100px;
+  }
+  #technologies-icon-text {
+    overflow: hidden;
   }
 
   .experience-timeline {
@@ -1003,7 +1054,7 @@ button {
   }
   .project-item {
     aspect-ratio: 1.5 / 1;
-    font-size: 1.8rem;
+    font-size: var(--text-medium-large);
   }
 
   .footer-content {
@@ -1014,14 +1065,14 @@ button {
   }
   .footer-text {
     text-align: center;
-    font-size: 1.4rem;
+    font-size: var(--text-medium-small);
   }
 }
 
 /* --- Standard Phones --- */
 @media (max-width: 600px) {
   .primary-header {
-    font-size: 2rem;
+    font-size: var(--text-medium-larger);
   }
 
   #technologies-grid-div {
@@ -1030,7 +1081,25 @@ button {
   }
 
   #top-banner-left-h3 {
-    font-size: 3rem;
+    font-size: var(--text-largest);
+  }
+  .experience-details h4 {
+    font-size: var(--text-medium-small);
+    color: var(--black-text);
+    margin-bottom: 5px;
+  }
+
+  .experience-details .position,
+  .experience-details .dates {
+    font-size: var(--text-tiny);
+    color: #444;
+  }
+
+  .experience-details ul {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: var(--text-tiny);
+    color: #222;
   }
 }
 
@@ -1043,10 +1112,10 @@ button {
   .btn-footer-secondary {
     width: 90%;
     padding: 12px 15px;
-    font-size: 1rem;
+    font-size: var(--text-tiny);
   }
   .footer-text {
-    font-size: 1.2rem;
+    font-size: var(--text-small-tiny);
   }
   #png-container {
     width: 160px;
@@ -1054,11 +1123,11 @@ button {
     border-width: 3px;
   }
   #hero-section-left h2 {
-    font-size: 1.6rem;
+    font-size: var(--text-medium);
   }
   #hero-section-left p,
   #hero-section-left ul {
-    font-size: 0.95rem;
+    font-size: var(--text-tiny);
   }
 }
 /* ===== END OF MEDIA QUERIES ===== */
