@@ -55,6 +55,32 @@ h5 {
   padding: 0;
   overflow-x: hidden;
 }
+/* ========= */
+/* DARK MODE */
+/* ========= */
+/* --- Dark Mode Styles --- */
+body.dark-mode {
+  --main-colour: #5dadec; /* Lighter blue for dark background */
+  --background-colour: #1a1a1a; /* Dark background */
+  --text-colour: #e0e0e0; /* Light text */
+  --secondary-text-colour: #bbbbbb; /* Lighter secondary text */
+  --border-colour: #444444; /* Darker borders */
+  --header-colour: #ffffff; /* White headers */
+  --item-background: #2c2c2c; /* Slightly lighter dark background for items */
+  --scrollbar-track: #333333;
+  --scrollbar-thumb: #555555;
+  --scrollbar-thumb-hover: #777777;
+
+  /* Remap --black-text if used separately */
+  --black-text: var(--header-colour);
+}
+
+/* Optional: Style toggle button differently in dark mode */
+body.dark-mode #dark-mode-toggle {
+  border-color: var(--border-colour);
+  background-color: var(--item-background);
+  color: var(--text-colour);
+}
 
 /* main body of page controlling margins etc */
 #main-content {
@@ -93,6 +119,12 @@ i {
   color: red;
   font-size: var(--text-large);
 }
+
+.favicon-icon {
+  width: 50px;
+  height: 40px;
+  padding-left: 5px;
+}
 /* ======================== */
 /* ===== END OF ICONS ===== */
 /* ======================== */
@@ -123,7 +155,7 @@ i {
 }
 #top-banner-right {
   flex-grow: 1;
-  margin-right: 16vw;
+  margin-right: 15vw;
   justify-content: space-evenly;
 }
 
@@ -136,7 +168,6 @@ i {
 }
 
 #top-banner-left-h3 {
-  padding-left: 10vw;
   font-size: var(--text-header-medium);
 }
 
@@ -162,17 +193,19 @@ i {
   gap: 30px;
   margin-bottom: 30px;
   align-items: center;
+  height: fit-content;
+  /* border: solid red 1px; */
+  align-items: flex-start;
 }
 
 #hero-section-left {
-  flex: 2;
-  background-color: white;
-  padding: 20px 35px 30px 35px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
   display: flex;
+  flex: 1.5;
+  background-color: white;
+  border-radius: 8px;
   flex-direction: column;
-  gap: 15px;
+  height: inherit;
+  /* border: solid black 1px; */
 }
 
 #hero-section-left h2 {
@@ -210,8 +243,11 @@ i {
 #hero-section-right {
   flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  /* border: solid black 1px; */
 }
 
 #png-container {
@@ -230,6 +266,25 @@ i {
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.quote-div {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.quote {
+  text-align: left;
+  padding: 10px;
+}
+.quote h2 {
+  font-size: var(--text-largest);
+  color: var(--main-colour);
+}
+.quote p {
+  font-size: var(--text-tiny);
+  color: var(--main-colour);
 }
 /* =============================== */
 /* ===== END OF HERO SECTION ===== */
@@ -567,6 +622,7 @@ i {
     background-color 0.2s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  padding: 25px;
 }
 
 .project-item:hover {
@@ -920,6 +976,16 @@ button {
 
 /* --- Medium Screens / Tablets (Stacking starts, layout changes) --- */
 @media (max-width: 950px) {
+  #hero-section-right {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-self: center;
+    height: 100%;
+  }
+  #hero-section-right #png-container {
+    align-self: center;
+  }
   #top-banner {
     flex-direction: column;
     padding: 20px 5vw;
@@ -1046,6 +1112,18 @@ button {
   #edu-cert-grid-div {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
+  }
+  .edu-cert-visible h4 {
+    font-size: var(--text-medium-small);
+  }
+
+  .edu-cert-details h5 {
+    font-size: var(--text-small-tiny);
+    font-weight: 300;
+  }
+  .edu-cert-details p,
+  li {
+    font-size: var(--text-tiny);
   }
 
   #projects-grid-div {
