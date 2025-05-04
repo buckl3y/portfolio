@@ -13,6 +13,7 @@
   --banner-text: aliceblue;
   --edges-colour: #252c36;
   --button-text: #fff;
+  --highlight-colour: #d35400;
   --text-smallest: 0.8rem;
   --text-tiny: 1rem;
   --text-small-tiny: 1.2rem;
@@ -77,6 +78,7 @@ body.dark-mode {
   --scrollbar-track: #333333;
   --scrollbar-thumb: #555555;
   --scrollbar-thumb-hover: #777777;
+  --highlight-colour: #ffa52c;
 }
 
 /* Optional: Style toggle button differently in dark mode */
@@ -96,6 +98,20 @@ body.dark-mode #dark-mode-toggle {
 /* Headings for each section */
 .primary-header {
   font-size: var(--text-header-small);
+}
+
+b.highlight {
+  color: var(--highlight-colour);
+  font-weight: 400;
+}
+
+hr {
+  margin-top: 15vh;
+  margin-bottom: 15vh;
+  height: 3px;
+  background-color: var(--highlight-colour);
+  border: none;
+  border-radius: 8px;
 }
 /* ============================================== */
 /* ===== END OF GLOBAL RESETS & BASE STYLES ===== */
@@ -364,16 +380,17 @@ h3#top-banner-left-h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20vh;
+  height: fit-content;
   width: 100%;
 }
 
 #technologies-grid-div {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 40px;
+  /* gap: 20px; */
   height: fit-content;
   width: 100%;
+  justify-items: center;
 }
 #technologies-icon-div {
   display: flex;
@@ -422,7 +439,7 @@ h3#top-banner-left-h3 {
 #prof-experience-header-div {
   color: var(--primary-text);
   max-width: calc(100vw - 30vw);
-  margin: 0 auto 30px auto;
+  height: fit-content;
   display: flex;
   justify-content: center;
 }
@@ -431,22 +448,17 @@ h3#top-banner-left-h3 {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  /* padding: 30px 0; */
   position: relative;
 
-  /* --- Optional: Style scrollbar (WebKit browsers) --- */
-
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
-  }
+  /* ====CSS to Hide Scrollbar==== */
+  /* For Firefox */
+  scrollbar-width: none;
+  /* For Internet Explorer and Edge (legacy) */
+  -ms-overflow-style: none;
+}
+/* For Chrome, Safari, and Opera */
+.experience-slider-container::-webkit-scrollbar {
+  display: none;
 }
 
 .experience-timeline {
@@ -534,7 +546,7 @@ h3#top-banner-left-h3 {
 /* =============================================== */
 #edu-cert-section {
   padding-top: 40px;
-  padding-bottom: 60px;
+  /* padding-bottom: 60px; */
 }
 
 #edu-cert-header-div {
@@ -639,7 +651,6 @@ h3#top-banner-left-h3 {
 /* ===== PROJECTS SECTION ===== */
 /* ============================ */
 #projects-section {
-  padding-top: 40px;
   padding-bottom: 60px;
 }
 
@@ -654,10 +665,8 @@ h3#top-banner-left-h3 {
 
 #projects-grid-div {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  margin-left: 15vw;
-  margin-right: 15vw;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
 
 .project-item {
@@ -675,7 +684,7 @@ h3#top-banner-left-h3 {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
     background-color 0.2s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  overflow: auto;
+  overflow: none;
   padding: 25px;
 }
 
@@ -801,7 +810,16 @@ button {
   color: var(--black-text);
   border: var(--main-colour);
 }
+
+.experience-controls-div {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
 .experience-controls {
+  padding: 5px 10px;
+  border-radius: 25px;
+  background-color: var(--edges-colour);
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -835,10 +853,8 @@ button {
 
 #exp-prev-btn:disabled,
 #exp-next-btn:disabled {
-  background-color: var(--background-color);
-  color: var(--background-color);
+  opacity: 0;
   cursor: default;
-  opacity: 0.6;
 }
 /* =============================================== */
 /* ===== END OF BUTTONS (General & Specific) ===== */
@@ -999,7 +1015,6 @@ button {
 @media (max-width: 1200px) {
   #main-content,
   #edu-cert-grid-div,
-  #projects-grid-div,
   .footer-content {
     margin-left: 10vw;
     margin-right: 10vw;
@@ -1083,10 +1098,13 @@ button {
 
   #nav-btns {
     flex-direction: column;
-    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
   }
   .nav-button {
-    width: 100%;
+    padding: 50px 0px;
+    width: 80%;
   }
 }
 @media (max-width: 950px) {
@@ -1115,7 +1133,6 @@ button {
 @media (max-width: 768px) {
   #main-content,
   #edu-cert-grid-div,
-  #projects-grid-div,
   .footer-content {
     margin-left: 5vw;
     margin-right: 5vw;
@@ -1221,6 +1238,7 @@ button {
   #technologies-grid-div {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: 20px;
+    margin-top: 20px;
   }
 
   #top-banner-left-h3 {
